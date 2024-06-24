@@ -15,6 +15,48 @@
       "when": 1719061645481,
       "tag": "0001_curly_nightshade",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1719150358373,
+      "tag": "0002_yellow_skin",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1719233555835,
+      "tag": "0003_absent_tattoo",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1719233635309,
+      "tag": "0004_giant_hellfire_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1719247773661,
+      "tag": "0005_gigantic_chimera",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1719249614294,
+      "tag": "0006_romantic_wiccan",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1719249671289,
+      "tag": "0007_quiet_shen",
+      "breakpoints": true
     }
   ]
 }
