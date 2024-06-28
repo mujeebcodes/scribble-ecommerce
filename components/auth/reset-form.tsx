@@ -25,31 +25,30 @@ import FormSuccess from "./FormSuccess";
 import FormError from "./FormError";
 import { NewPasswordSchema } from "@/types/new-password-schema";
 import { newPassword } from "@/server/actions/new-password";
-import { useSearchParams } from "next/navigation";
+import { ResetSchema } from "@/types/reset-schema";
+import { reset } from "@/server/actions/password-reset";
 
-const NewPasswordForm = () => {
-  const form = useForm<z.infer<typeof NewPasswordSchema>>({
-    resolver: zodResolver(NewPasswordSchema),
-    defaultValues: { password: "" },
+const ResetForm = () => {
+  const form = useForm<z.infer<typeof ResetSchema>>({
+    resolver: zodResolver(ResetSchema),
+    defaultValues: { email: "" },
   });
-
-  const token = useSearchParams().get("token");
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { execute, status } = useAction(newPassword, {
+  const { execute, status } = useAction(reset, {
     onSuccess(data) {
       if (data?.error) setError(data?.error);
       if (data?.success) setSuccess(data?.success);
     },
   });
 
-  const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
-    execute({ password: values.password, token });
+  const onSubmit = (values: z.infer<typeof ResetSchema>) => {
+    execute(values);
   };
   return (
     <AuthCard
-      cardTitle="Enter a new Password"
+      cardTitle="Forgot your password?"
       backButtonHref="/auth/login"
       backButtonLabel="Back to Login"
       showSocials
@@ -60,17 +59,17 @@ const NewPasswordForm = () => {
             <div>
               <FormField
                 control={form.control}
-                name="password"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="Your password"
-                        type="password"
-                        autoComplete="current-password"
+                        placeholder="Please provide your registered email"
+                        type="email"
                         disabled={status === "executing"}
+                        autoComplete="email"
                       />
                     </FormControl>
                     <FormDescription />
@@ -96,4 +95,4 @@ const NewPasswordForm = () => {
     </AuthCard>
   );
 };
-export default NewPasswordForm;
+export default ResetForm;
