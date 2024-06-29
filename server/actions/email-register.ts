@@ -14,8 +14,6 @@ const action = createSafeActionClient();
 export const emailRegister = action(
   RegisterSchema,
   async ({ email, name, password }) => {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     const existingUser = await db.query.users.findFirst({
       where: eq(users.email, email),
     });
@@ -32,6 +30,8 @@ export const emailRegister = action(
       }
       return { error: "Email already in use" };
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.insert(users).values({ email, name, password: hashedPassword });
     const verificationToken = await generateEmailVerificationToken(email);
