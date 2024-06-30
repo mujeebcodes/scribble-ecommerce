@@ -64,6 +64,13 @@
       "when": 1719523072603,
       "tag": "0008_last_khan",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1719759440851,
+      "tag": "0009_slippery_pet_avengers",
+      "breakpoints": true
     }
   ]
 }
