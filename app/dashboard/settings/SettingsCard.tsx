@@ -186,6 +186,8 @@ const SettingsCard = (session: SettingsForm) => {
                       disabled={
                         status === "executing" || session.session.user.isOAuth
                       }
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
 
