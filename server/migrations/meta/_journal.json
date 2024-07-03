@@ -78,6 +78,13 @@
       "when": 1719783372170,
       "tag": "0010_big_bishop",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1719931797085,
+      "tag": "0011_wealthy_vermin",
+      "breakpoints": true
     }
   ]
 }
