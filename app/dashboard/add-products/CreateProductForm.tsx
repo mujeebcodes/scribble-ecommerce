@@ -27,20 +27,31 @@ import Tiptap from "./TipTap";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { createProduct } from "@/server/actions/create-product";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const CreateProductForm = () => {
   const form = useForm<zProductSchema>({
     resolver: zodResolver(ProductSchema),
     defaultValues: { title: "", description: "", price: 0 },
+    mode: "onChange",
   });
+
+  const router = useRouter();
 
   const { execute, status } = useAction(createProduct, {
     onSuccess: (data) => {
+      if (data?.error) {
+        toast.error(data.error);
+      }
       if (data?.success) {
-        console.log(data.success);
+        router.push("/dashboard/products");
+        toast.success(data.success);
       }
     },
-    onError: (error) => console.log(error),
+    onExecute: () => {
+      toast.loading("Creating product");
+    },
   });
 
   const onSubmit = async (values: zProductSchema) => {
